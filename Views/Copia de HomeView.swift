@@ -69,7 +69,7 @@ struct HomeView: View {
             programarNotificaciones()
         }
     }
-    
+    /*
     private func programarNotificaciones() {
         print("🔔 Programando notificaciones desde HomeView…")
         ApiService.shared.request(endpoint: "/medicinas") { result in
@@ -87,15 +87,14 @@ struct HomeView: View {
                 print("❌ Error cargando medicinas para notificaciones:", error)
             }
         }
-    }
-    /*
+    }*/
     private func programarNotificaciones() {
         print("🔔 Programando notificaciones desde HomeView…")
         ApiService.shared.request(endpoint: "/medicinas") { result in
             switch result {
             case .success(let data):
                 if let medicinas = try? JSONDecoder().decode([Medicina].self, from: data) {
-                    NotificationService.shared.programar(medicinas: medicinas)
+                    NotificationService.shared.programarTodas(medicinas: medicinas)
                 } else {
                     print("⚠️ No se pudo decodificar medicinas")
                 }
@@ -103,7 +102,7 @@ struct HomeView: View {
                 print("❌ Error cargando medicinas para notificaciones:", error)
             }
         }
-    }*/
+    }
 
 }
 
